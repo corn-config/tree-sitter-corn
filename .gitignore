@@ -1,1 +1,14 @@
 node_modules
+build
+target
+*.log
+package-lock.json
+Cargo.lock
+/.build
+/*.a
+/*.dylib
+/*.so*
+*.o
+/bindings/c/*.h
+/bindings/c/tree-sitter-*.pc
+*.wasm
