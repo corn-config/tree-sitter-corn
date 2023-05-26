@@ -4,4 +4,4 @@
 ] @scope
 
 (assign_block (input @definition.constant))
-(object input) @reference
+(object (input @reference))
