@@ -1,7 +1,16 @@
+; scopes
+
 [
   (object)
   (array)
 ] @scope
 
-(assign_block (input @definition.constant))
-(object (input @reference))
+; definitions
+
+(assign_block 
+  (assignment
+    (input) 
+      @definition.constant))
+
+(value (input) @reference)
+
