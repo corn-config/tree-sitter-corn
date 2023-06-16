@@ -250,14 +250,30 @@
           "value": "\""
         },
         {
-          "type": "PATTERN",
-          "value": "[^\\\"\\r\\n]*"
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "input"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "char"
+              }
+            ]
+          }
         },
         {
           "type": "STRING",
           "value": "\""
         }
       ]
+    },
+    "char": {
+      "type": "PATTERN",
+      "value": "[^\\\"\\r\\n]"
     },
     "float": {
       "type": "SEQ",
@@ -285,10 +301,61 @@
         {
           "type": "PATTERN",
           "value": "\\d+"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_exponent"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "_exponent": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "e"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "+"
+            },
+            {
+              "type": "STRING",
+              "value": "-"
+            }
+          ]
+        },
+        {
+          "type": "PATTERN",
+          "value": "\\d+"
         }
       ]
     },
     "integer": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_hex_integer"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_decimal_integer"
+        }
+      ]
+    },
+    "_decimal_integer": {
       "type": "SEQ",
       "members": [
         {
@@ -306,6 +373,26 @@
         {
           "type": "PATTERN",
           "value": "\\d+"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "PATTERN",
+            "value": "_?\\d+"
+          }
+        }
+      ]
+    },
+    "_hex_integer": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "0x"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[0-9a-fA-F]+"
         }
       ]
     },

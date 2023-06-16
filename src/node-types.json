@@ -162,7 +162,21 @@
   {
     "type": "string",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "char",
+          "named": true
+        },
+        {
+          "type": "input",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "value",
@@ -212,6 +226,10 @@
     "named": false
   },
   {
+    "type": "+",
+    "named": false
+  },
+  {
     "type": "-",
     "named": false
   },
@@ -221,6 +239,10 @@
   },
   {
     "type": "..",
+    "named": false
+  },
+  {
+    "type": "0x",
     "named": false
   },
   {
@@ -236,8 +258,16 @@
     "named": false
   },
   {
+    "type": "char",
+    "named": true
+  },
+  {
     "type": "comment",
     "named": true
+  },
+  {
+    "type": "e",
+    "named": false
   },
   {
     "type": "false",

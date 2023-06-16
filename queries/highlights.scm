@@ -14,6 +14,7 @@
 (comment) @comment
 
 (string) @string
+(char) @string
 (integer) @number
 (float) @float
 (boolean) @boolean

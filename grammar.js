@@ -83,20 +83,40 @@ module.exports = grammar({
 
     string: $ => seq(
       '"',
-      /[^\"\r\n]*/,
+      repeat(choice($.input, $.char)),
       '"'
     ),
+
+    char: $ => /[^\"\r\n]/,
 
     float: $ => seq(
       optional("-"),
       /\d+/,
       ".",
+      /\d+/,
+      optional($._exponent)
+    ),
+
+    _exponent: $ => seq(
+      "e",
+      choice("+", "-"),
       /\d+/
     ),
 
-    integer: $ => seq(
+    integer: $ => choice(
+      $._hex_integer,
+      $._decimal_integer
+    ),
+
+    _decimal_integer: $=> seq(
       optional("-"),
-      /\d+/
+      /\d+/,
+      repeat(/_?\d+/)
+    ),
+    
+    _hex_integer: $ => seq(
+      "0x",
+      /[0-9a-fA-F]+/
     ),
 
     boolean: $ => choice(
