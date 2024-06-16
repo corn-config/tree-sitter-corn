@@ -79,7 +79,10 @@ module.exports = grammar({
       ))
     ),
 
-    path_seg: $ => repeat1(/[^=.\s]/),
+    path_seg: $ => choice(
+      repeat1(/[^=.\s]/),
+      seq("'", repeat1(/[^=.\s]/), "'")
+    ),
 
     string: $ => seq(
       '"',
