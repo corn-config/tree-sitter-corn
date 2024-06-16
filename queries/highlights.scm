@@ -8,6 +8,7 @@
   "]"
 ] @punctuation.bracket
 
+(path_seg) @string.special.key
 "." @punctuation.delimiter
 
 (input) @constant
